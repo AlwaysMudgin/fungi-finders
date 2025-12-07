@@ -6,6 +6,7 @@ import botanicalExpertise from './assets/images/botanical-expertise.webp';
 import culinaryDelight from './assets/images/culinary-delight.webp';
 import getToKnow from './assets/images/get-to-know.webp';
 import nature from './assets/images/nature.webp';
+import hamburger from './assets/images/hamburger.svg';
 
 function App() {
   return (
@@ -14,7 +15,11 @@ function App() {
         <div className="wrapper" data-width="wide">
           <div className="site-header__inner">
             <img src={fungiFinders} alt="Fungi Finders" />
-            <nav className="primary-navigation">
+            <button aria-controls="primary-nav" aria-expanded="false">
+              <span className="visually-hidden">Menu</span>
+              <img src={hamburger} alt="" />
+            </button>
+            <nav id="primary-nav" className="primary-navigation">
               <ul>
                 <li>
                   <a href="/">Discover</a>
