@@ -9,29 +9,60 @@ import nature from './assets/images/nature.webp';
 import hamburger from './assets/images/hamburger.svg';
 
 function App() {
+  const [menuIsOpen, setMenuIsOpen] = React.useState(false);
+  const [widthIsMobile, setWidthIsMobile] = React.useState(
+    window.innerWidth < 760
+  );
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (widthIsMobile) {
+        if (window.innerWidth > 760) {
+          setWidthIsMobile(false);
+        }
+      } else {
+        if (window.innerWidth < 760) {
+          setWidthIsMobile(true);
+        }
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
+
   return (
     <>
       <header className="site-header">
         <div className="wrapper" data-width="wide">
           <div className="site-header__inner">
             <img src={fungiFinders} alt="Fungi Finders" />
-            <button aria-controls="primary-nav" aria-expanded="false">
+            <button
+              aria-controls="primary-nav"
+              aria-expanded={menuIsOpen}
+              onClick={() => setMenuIsOpen(!menuIsOpen)}
+            >
               <span className="visually-hidden">Menu</span>
               <img src={hamburger} alt="" />
             </button>
-            <nav id="primary-nav" className="primary-navigation">
-              <ul>
-                <li>
-                  <a href="/">Discover</a>
-                </li>
-                <li>
-                  <a href="#">Mushroom Guide</a>
-                </li>
-                <li>
-                  <a href="#">FAQ</a>
-                </li>
-              </ul>
-            </nav>
+            {(!widthIsMobile || menuIsOpen) && (
+              <nav id="primary-nav" className="primary-navigation">
+                <ul role="list">
+                  <li>
+                    <a href="/">Discover</a>
+                  </li>
+                  <li>
+                    <a href="#">Mushroom Guide</a>
+                  </li>
+                  <li>
+                    <a href="#">FAQ</a>
+                  </li>
+                </ul>
+              </nav>
+            )}
           </div>
         </div>
       </header>
