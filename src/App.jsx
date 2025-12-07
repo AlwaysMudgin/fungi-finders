@@ -37,6 +37,9 @@ function App() {
   return (
     <>
       <header className="site-header">
+        <a className="skip-to-main" href="#main">
+          Skip to main content
+        </a>
         <div className="wrapper" data-width="wide">
           <div className="site-header__inner">
             <img src={fungiFinders} alt="Fungi Finders" />
@@ -66,7 +69,7 @@ function App() {
           </div>
         </div>
       </header>
-      <main>
+      <main id="main">
         <section className="hero section" data-padding="compact">
           <div className="wrapper flow">
             <h1 className="hero__title">
